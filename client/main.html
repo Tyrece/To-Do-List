@@ -16,6 +16,7 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
+          {{> loginButtons}}
           <h1 class="Heading">TO DO List</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 
@@ -39,16 +40,16 @@
 <template name="AddTask">
             
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary js-addTask" data-toggle="modal" data-target="#exampleModal">
   Add Task
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">To Do List</h5>
+        <h5 class="modal-title" id="addTaskModalLabel">To Do List</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -56,14 +57,14 @@
       <div class="modal-body">
         <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">@</span>
+    <span class="input-group-text" id="basic-addon1">Task</span>
   </div>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  <input id="Task" type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary js-cancelTask" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary js-saveTask">Save Task</button>
       </div>
     </div>
   </div>
@@ -74,15 +75,15 @@
  <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
-<!--{{#each allTask}}-->
- <div class="input-group mb-3">
+{{#each allTask}}
+ <div class="input-group mb-3" id="{{_id}}">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">@</span>
+    <button type="button" class="btn btn-primary js-deleteTask">Delete</button>
   </div>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="{{Task}}" aria-label="Username" aria-describedby="basic-addon1">
 </div>
-<!--{{/each}}-->
- 
+{{/each}}
+  
 </div>
 </div>
 </div>
