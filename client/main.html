@@ -1,10 +1,12 @@
 <head>
   <title>todolist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+
 </head>
 
 <body>
-  
-
   {{> hello}}
   {{> Task}}
 </body>
@@ -20,7 +22,9 @@
           <h1 class="Heading">TO DO List</h1>
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 
+          {{#if userLoggedIn}}
           {{>AddTask}}
+          {{/if}}
 
         </div>
       </div>
@@ -78,8 +82,19 @@
 {{#each allTask}}
  <div class="input-group mb-3" id="{{_id}}">
   <div class="input-group-prepend">
-    <button type="button" class="btn btn-primary js-deleteTask">Delete</button>
+  
+   <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="checkbox" aria-label="Checkbox for following text input">
+    </div>
   </div>
+ 
+    {{#if userLoggedIn}}
+    <button type="button" class="btn btn-primary js-deleteTask">Delete</button>
+    <p><i class="zmdi zmdi-close-alt zmdi-hc-2x"></i> </p>
+    {{/if}}
+  </div>
+
   <input type="text" class="form-control" placeholder="{{Task}}" aria-label="Username" aria-describedby="basic-addon1">
 </div>
 {{/each}}
