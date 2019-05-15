@@ -47,8 +47,21 @@ Template.Task.helpers({
 		} else {
 			return false;
 		}
-	}
+	},
 
+	tasksFound(){
+		return userDB.find().count();
+	},
+
+});
+Template.hello.helpers({
+	userLoggedIn(){
+		if (Meteor.user()){
+			return true;
+		} else {
+			return false;
+		}
+	}
 });
 
 Template.Task.events({

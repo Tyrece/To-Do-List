@@ -9,6 +9,7 @@
 <body>
   {{> hello}}
   {{> Task}}
+  {{> footer}}
 </body>
 
 <template name="hello">
@@ -23,7 +24,7 @@
           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 
           {{#if userLoggedIn}}
-          {{>AddTask}}
+          {{> AddTask}}
           {{/if}}
 
         </div>
@@ -98,9 +99,13 @@
   <input type="text" class="form-control" placeholder="{{Task}}" aria-label="Username" aria-describedby="basic-addon1">
 </div>
 {{/each}}
-  
+
 </div>
 </div>
 </div>
-  
 </template>
+
+
+
+
+
