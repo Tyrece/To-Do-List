@@ -7,6 +7,25 @@ import '../lib/Collections.js';
 
 
 
+
+lastScrollTop = 0; 
+$(window).scroll(function(event){
+	// test if we are near the bottom of the window
+	if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+		// where are we in the page? 
+		var scrollTop = $(this).scrollTop();
+		// test if we are going down
+		if (scrollTop > lastScrollTop){
+			// yes we are heading down...   
+		 console.log("We have arrived at the bottom of the page");
+			// yes we are heading down...
+			Session.set('imgLimit', Session.get('imgLimit') + 3);
+
+		}
+		lastScrollTop = scrollTop;
+	}
+});
+
 Accounts.ui.config({});
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
@@ -33,6 +52,21 @@ Template.AddTask.events({
 		$("#addTaskModal").modal("hide")
 		userDB.insert({"Task": Task,})
 	},
+
+	'click .js-public'(){
+		console.log("public")
+		if(option1.checked==true)
+		alert("You selected "+option1.value);
+		
+
+
+	},
+
+	'click .js-private'(){
+		console.log("private")
+		if(option2.checked==true)
+		alert("you selected "+option2.value);
+	},
 })
 
 
@@ -52,6 +86,17 @@ Template.Task.helpers({
 	tasksFound(){
 		return userDB.find().count();
 	},
+
+	optionpublic(){
+		if (option1.checked==true)
+			return true;
+	},
+
+	optionprivate(){
+		if (option2.checked==true)
+			return true;
+	}
+
 
 });
 Template.hello.helpers({
@@ -74,7 +119,6 @@ Template.Task.events({
 		})
 	},
 });
-
 
 
 
